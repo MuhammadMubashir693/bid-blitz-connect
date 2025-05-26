@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -19,7 +18,7 @@ const ItemDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // In a real app, this would fetch from an API
+    // Load complete sample items dataset (same as Browse page)
     const sampleItems = [
       {
         id: '1',
@@ -32,19 +31,133 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller1',
         sellerName: 'John Collector'
+      },
+      {
+        id: '2',
+        title: 'Abstract Oil Painting',
+        description: 'Original abstract oil painting by emerging artist. Signed and authenticated. This piece showcases vibrant colors and dynamic brushwork that captures the essence of modern abstract expressionism. Perfect for contemporary art collectors.',
+        currentBid: 750,
+        startingBid: 500,
+        endTime: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
+        category: 'Art',
+        status: 'active',
+        sellerId: 'seller2',
+        sellerName: 'Maria Artist'
+      },
+      {
+        id: '3',
+        title: 'Antique Victorian Furniture Set',
+        description: 'Beautiful Victorian-era dining set including table and 6 chairs. Recently restored with attention to historical accuracy. The mahogany wood features intricate carvings and the upholstery has been professionally reupholstered with period-appropriate fabric.',
+        currentBid: 2200,
+        startingBid: 1500,
+        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        category: 'Furniture',
+        status: 'active',
+        sellerId: 'seller3',
+        sellerName: 'Robert Antiques'
+      },
+      {
+        id: '4',
+        title: 'Rare Baseball Card Collection',
+        description: 'Complete 1952 Topps baseball card set in near mint condition. This legendary set includes Mickey Mantle rookie card and other Hall of Fame players. Cards have been professionally graded and stored in protective cases.',
+        currentBid: 12000,
+        startingBid: 8000,
+        endTime: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
+        category: 'Collectibles',
+        status: 'active',
+        sellerId: 'seller4',
+        sellerName: 'Sports Collectibles Inc'
+      },
+      {
+        id: '5',
+        title: 'Professional Camera Equipment',
+        description: 'Canon EOS R5 with 24-70mm f/2.8 lens and professional accessories. Barely used, in excellent condition. Includes camera bag, extra batteries, memory cards, and lens filters. Perfect for professional photographers or serious enthusiasts.',
+        currentBid: 3200,
+        startingBid: 2500,
+        endTime: new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
+        category: 'Electronics',
+        status: 'active',
+        sellerId: 'seller5',
+        sellerName: 'Photo Pro Equipment'
+      },
+      {
+        id: '6',
+        title: 'Handcrafted Jewelry Collection',
+        description: 'Exquisite handcrafted silver jewelry set with natural gemstones. Each piece is unique and made by skilled artisans. The set includes necklace, earrings, and bracelet featuring turquoise, amethyst, and other precious stones.',
+        currentBid: 450,
+        startingBid: 300,
+        endTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+        category: 'Jewelry',
+        status: 'active',
+        sellerId: 'seller6',
+        sellerName: 'Artisan Jewelers'
+      },
+      {
+        id: '7',
+        title: 'Vintage Gibson Les Paul Guitar',
+        description: '1959 Gibson Les Paul Standard in excellent condition. A true collectors piece with original PAF pickups and beautiful flame maple top. This guitar has been well-maintained and plays beautifully. Includes original hard case.',
+        currentBid: 15000,
+        startingBid: 12000,
+        endTime: new Date(Date.now() + 18 * 60 * 60 * 1000).toISOString(),
+        category: 'Music',
+        status: 'active',
+        sellerId: 'seller7',
+        sellerName: 'Vintage Instruments'
+      },
+      {
+        id: '8',
+        title: 'First Edition Harry Potter Book Set',
+        description: 'Complete first edition set of Harry Potter books in pristine condition. All seven books are first UK editions with dust jackets. Perfect for collectors of rare books and Harry Potter memorabilia.',
+        currentBid: 3500,
+        startingBid: 2000,
+        endTime: new Date(Date.now() + 36 * 60 * 60 * 1000).toISOString(),
+        category: 'Books',
+        status: 'active',
+        sellerId: 'seller8',
+        sellerName: 'Rare Books Dealer'
+      },
+      {
+        id: '9',
+        title: 'Vintage Porsche 911 Parts',
+        description: 'Authentic vintage Porsche 911 parts including original wheels and engine components. Perfect for restoration projects or collectors. All parts are genuine Porsche and in good condition.',
+        currentBid: 5200,
+        startingBid: 3500,
+        endTime: new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString(),
+        category: 'Automotive',
+        status: 'active',
+        sellerId: 'seller9',
+        sellerName: 'Classic Car Parts'
+      },
+      {
+        id: '10',
+        title: 'Antique Persian Rug',
+        description: 'Beautiful hand-woven Persian rug from the 19th century. Museum quality with intricate patterns and rich colors. This rug has been professionally cleaned and appraised. A true work of art for any home.',
+        currentBid: 4800,
+        startingBid: 3000,
+        endTime: new Date(Date.now() + 96 * 60 * 60 * 1000).toISOString(),
+        category: 'Art',
+        status: 'active',
+        sellerId: 'seller10',
+        sellerName: 'Oriental Rug Gallery'
       }
     ];
 
-    const foundItem = sampleItems.find(item => item.id === id);
+    // Load user-created items from localStorage
+    const userItems = JSON.parse(localStorage.getItem('bidmaster_items') || '[]');
+    
+    // Combine sample items with user-created items
+    const allItems = [...sampleItems, ...userItems];
+    
+    const foundItem = allItems.find(item => item.id === id);
     if (foundItem) {
       setItem(foundItem);
       setBidAmount((foundItem.currentBid + 50).toString());
       
-      // Sample bid history
+      // Generate sample bid history for each item
       setBidHistory([
-        { id: '1', bidder: 'Alice M.', amount: 8500, timestamp: new Date(Date.now() - 10 * 60 * 1000).toISOString() },
-        { id: '2', bidder: 'Bob K.', amount: 8200, timestamp: new Date(Date.now() - 25 * 60 * 1000).toISOString() },
-        { id: '3', bidder: 'Carol S.', amount: 7900, timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString() },
+        { id: '1', bidder: 'Alice M.', amount: foundItem.currentBid, timestamp: new Date(Date.now() - 10 * 60 * 1000).toISOString() },
+        { id: '2', bidder: 'Bob K.', amount: foundItem.currentBid - 300, timestamp: new Date(Date.now() - 25 * 60 * 1000).toISOString() },
+        { id: '3', bidder: 'Carol S.', amount: foundItem.startingBid, timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString() },
       ]);
     }
   }, [id]);
@@ -163,7 +276,7 @@ const ItemDetail = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="font-medium">{item.sellerName}</p>
+                <p className="font-medium">{item.sellerName || 'Anonymous Seller'}</p>
                 <p className="text-sm text-gray-600">Member since 2020</p>
               </CardContent>
             </Card>
