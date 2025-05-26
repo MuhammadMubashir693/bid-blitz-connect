@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     users.push(newUser);
     localStorage.setItem('bidmaster_users', JSON.stringify(users));
     
-    const userObj = { id: newUser.id, name: email: newUser.email };
+    const userObj = { id: newUser.id, name: newUser.name, email: newUser.email };
     setUser(userObj);
     localStorage.setItem('bidmaster_user', JSON.stringify(userObj));
     return true;
