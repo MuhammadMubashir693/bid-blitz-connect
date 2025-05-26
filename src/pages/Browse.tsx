@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import ItemCard from '@/components/ItemCard';
 import { Input } from '@/components/ui/input';
@@ -12,7 +11,7 @@ const Browse = () => {
   const [sortBy, setSortBy] = useState('ending-soon');
 
   useEffect(() => {
-    // Load sample items - in a real app, this would come from an API
+    // Load sample items
     const sampleItems = [
       {
         id: '1',
@@ -20,7 +19,7 @@ const Browse = () => {
         description: 'Classic 1960s Rolex Submariner in excellent condition with original box and papers.',
         currentBid: 8500,
         startingBid: 5000,
-        endTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(), // 2 hours from now
+        endTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
         category: 'Watches',
         status: 'active' as const
       },
@@ -30,7 +29,7 @@ const Browse = () => {
         description: 'Original abstract oil painting by emerging artist. Signed and authenticated.',
         currentBid: 750,
         startingBid: 500,
-        endTime: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(), // 5 hours from now
+        endTime: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
         category: 'Art',
         status: 'active' as const
       },
@@ -40,7 +39,7 @@ const Browse = () => {
         description: 'Beautiful Victorian-era dining set including table and 6 chairs. Recently restored.',
         currentBid: 2200,
         startingBid: 1500,
-        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours from now
+        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
         category: 'Furniture',
         status: 'active' as const
       },
@@ -50,9 +49,9 @@ const Browse = () => {
         description: 'Complete 1952 Topps baseball card set in near mint condition.',
         currentBid: 12000,
         startingBid: 8000,
-        endTime: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(), // Ended 1 hour ago
+        endTime: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
         category: 'Collectibles',
-        status: 'ended' as const
+        status: 'active' as const
       },
       {
         id: '5',
@@ -60,7 +59,7 @@ const Browse = () => {
         description: 'Canon EOS R5 with 24-70mm f/2.8 lens and professional accessories.',
         currentBid: 3200,
         startingBid: 2500,
-        endTime: new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(), // 12 hours from now
+        endTime: new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
         category: 'Electronics',
         status: 'active' as const
       },
@@ -70,13 +69,58 @@ const Browse = () => {
         description: 'Exquisite handcrafted silver jewelry set with natural gemstones.',
         currentBid: 450,
         startingBid: 300,
-        endTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(), // 48 hours from now
+        endTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
         category: 'Jewelry',
+        status: 'active' as const
+      },
+      {
+        id: '7',
+        title: 'Vintage Gibson Les Paul Guitar',
+        description: '1959 Gibson Les Paul Standard in excellent condition. A true collectors piece.',
+        currentBid: 15000,
+        startingBid: 12000,
+        endTime: new Date(Date.now() + 18 * 60 * 60 * 1000).toISOString(),
+        category: 'Music',
+        status: 'active' as const
+      },
+      {
+        id: '8',
+        title: 'First Edition Harry Potter Book Set',
+        description: 'Complete first edition set of Harry Potter books in pristine condition.',
+        currentBid: 3500,
+        startingBid: 2000,
+        endTime: new Date(Date.now() + 36 * 60 * 60 * 1000).toISOString(),
+        category: 'Books',
+        status: 'active' as const
+      },
+      {
+        id: '9',
+        title: 'Vintage Porsche 911 Parts',
+        description: 'Authentic vintage Porsche 911 parts including original wheels and engine components.',
+        currentBid: 5200,
+        startingBid: 3500,
+        endTime: new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString(),
+        category: 'Automotive',
+        status: 'active' as const
+      },
+      {
+        id: '10',
+        title: 'Antique Persian Rug',
+        description: 'Beautiful hand-woven Persian rug from the 19th century. Museum quality.',
+        currentBid: 4800,
+        startingBid: 3000,
+        endTime: new Date(Date.now() + 96 * 60 * 60 * 1000).toISOString(),
+        category: 'Art',
         status: 'active' as const
       }
     ];
     
-    setItems(sampleItems);
+    // Load user-created items from localStorage
+    const userItems = JSON.parse(localStorage.getItem('bidmaster_items') || '[]');
+    
+    // Combine sample items with user-created items
+    const allItems = [...sampleItems, ...userItems];
+    setItems(allItems);
   }, []);
 
   const filteredItems = items.filter(item => {
@@ -131,6 +175,9 @@ const Browse = () => {
                 <SelectItem value="Collectibles">Collectibles</SelectItem>
                 <SelectItem value="Electronics">Electronics</SelectItem>
                 <SelectItem value="Jewelry">Jewelry</SelectItem>
+                <SelectItem value="Music">Music</SelectItem>
+                <SelectItem value="Books">Books</SelectItem>
+                <SelectItem value="Automotive">Automotive</SelectItem>
               </SelectContent>
             </Select>
             
