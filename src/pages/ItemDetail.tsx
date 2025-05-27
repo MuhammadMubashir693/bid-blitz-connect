@@ -18,7 +18,7 @@ const ItemDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Load complete sample items dataset with images (same as Browse page)
+    // Load complete sample items dataset with relevant images
     const sampleItems = [
       {
         id: '1',
@@ -31,7 +31,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller1',
         sellerName: 'John Collector',
-        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop'
       },
       {
         id: '2',
@@ -44,7 +44,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller2',
         sellerName: 'Maria Artist',
-        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop'
       },
       {
         id: '3',
@@ -57,7 +57,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller3',
         sellerName: 'Robert Antiques',
-        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop'
       },
       {
         id: '4',
@@ -70,7 +70,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller4',
         sellerName: 'Sports Collectibles Inc',
-        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop'
       },
       {
         id: '5',
@@ -83,7 +83,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller5',
         sellerName: 'Photo Pro Equipment',
-        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=300&fit=crop'
       },
       {
         id: '6',
@@ -96,7 +96,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller6',
         sellerName: 'Artisan Jewelers',
-        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop'
       },
       {
         id: '7',
@@ -109,7 +109,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller7',
         sellerName: 'Vintage Instruments',
-        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop'
       },
       {
         id: '8',
@@ -122,7 +122,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller8',
         sellerName: 'Rare Books Dealer',
-        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop'
       },
       {
         id: '9',
@@ -135,7 +135,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller9',
         sellerName: 'Classic Car Parts',
-        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop'
       },
       {
         id: '10',
@@ -148,7 +148,7 @@ const ItemDetail = () => {
         status: 'active',
         sellerId: 'seller10',
         sellerName: 'Oriental Rug Gallery',
-        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=300&fit=crop'
       }
     ];
 
