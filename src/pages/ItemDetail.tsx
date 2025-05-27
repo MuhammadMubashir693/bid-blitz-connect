@@ -18,7 +18,7 @@ const ItemDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Load complete sample items dataset (same as Browse page)
+    // Load complete sample items dataset with images (same as Browse page)
     const sampleItems = [
       {
         id: '1',
@@ -30,7 +30,8 @@ const ItemDetail = () => {
         category: 'Watches',
         status: 'active',
         sellerId: 'seller1',
-        sellerName: 'John Collector'
+        sellerName: 'John Collector',
+        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
       },
       {
         id: '2',
@@ -42,7 +43,8 @@ const ItemDetail = () => {
         category: 'Art',
         status: 'active',
         sellerId: 'seller2',
-        sellerName: 'Maria Artist'
+        sellerName: 'Maria Artist',
+        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
       },
       {
         id: '3',
@@ -54,7 +56,8 @@ const ItemDetail = () => {
         category: 'Furniture',
         status: 'active',
         sellerId: 'seller3',
-        sellerName: 'Robert Antiques'
+        sellerName: 'Robert Antiques',
+        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
       },
       {
         id: '4',
@@ -66,7 +69,8 @@ const ItemDetail = () => {
         category: 'Collectibles',
         status: 'active',
         sellerId: 'seller4',
-        sellerName: 'Sports Collectibles Inc'
+        sellerName: 'Sports Collectibles Inc',
+        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
       },
       {
         id: '5',
@@ -78,7 +82,8 @@ const ItemDetail = () => {
         category: 'Electronics',
         status: 'active',
         sellerId: 'seller5',
-        sellerName: 'Photo Pro Equipment'
+        sellerName: 'Photo Pro Equipment',
+        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
       },
       {
         id: '6',
@@ -90,7 +95,8 @@ const ItemDetail = () => {
         category: 'Jewelry',
         status: 'active',
         sellerId: 'seller6',
-        sellerName: 'Artisan Jewelers'
+        sellerName: 'Artisan Jewelers',
+        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
       },
       {
         id: '7',
@@ -102,7 +108,8 @@ const ItemDetail = () => {
         category: 'Music',
         status: 'active',
         sellerId: 'seller7',
-        sellerName: 'Vintage Instruments'
+        sellerName: 'Vintage Instruments',
+        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
       },
       {
         id: '8',
@@ -114,7 +121,8 @@ const ItemDetail = () => {
         category: 'Books',
         status: 'active',
         sellerId: 'seller8',
-        sellerName: 'Rare Books Dealer'
+        sellerName: 'Rare Books Dealer',
+        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
       },
       {
         id: '9',
@@ -126,7 +134,8 @@ const ItemDetail = () => {
         category: 'Automotive',
         status: 'active',
         sellerId: 'seller9',
-        sellerName: 'Classic Car Parts'
+        sellerName: 'Classic Car Parts',
+        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
       },
       {
         id: '10',
@@ -138,7 +147,8 @@ const ItemDetail = () => {
         category: 'Art',
         status: 'active',
         sellerId: 'seller10',
-        sellerName: 'Oriental Rug Gallery'
+        sellerName: 'Oriental Rug Gallery',
+        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
       }
     ];
 
@@ -251,8 +261,16 @@ const ItemDetail = () => {
           <div className="space-y-6">
             <Card>
               <CardContent className="p-0">
-                <div className="h-96 bg-gradient-to-br from-blue-100 to-blue-200 rounded-t-lg flex items-center justify-center">
-                  <div className="text-gray-500 text-lg font-medium">No Image Available</div>
+                <div className="h-96 bg-gradient-to-br from-blue-100 to-blue-200 rounded-t-lg flex items-center justify-center overflow-hidden">
+                  {item.imageUrl ? (
+                    <img 
+                      src={item.imageUrl} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-gray-500 text-lg font-medium">No Image Available</div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">

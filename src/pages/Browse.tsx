@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import ItemCard from '@/components/ItemCard';
 import { Input } from '@/components/ui/input';
@@ -11,7 +12,7 @@ const Browse = () => {
   const [sortBy, setSortBy] = useState('ending-soon');
 
   useEffect(() => {
-    // Load sample items
+    // Load sample items with placeholder images
     const sampleItems = [
       {
         id: '1',
@@ -21,7 +22,8 @@ const Browse = () => {
         startingBid: 5000,
         endTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
         category: 'Watches',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
       },
       {
         id: '2',
@@ -31,7 +33,8 @@ const Browse = () => {
         startingBid: 500,
         endTime: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
         category: 'Art',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
       },
       {
         id: '3',
@@ -41,7 +44,8 @@ const Browse = () => {
         startingBid: 1500,
         endTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
         category: 'Furniture',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
       },
       {
         id: '4',
@@ -51,7 +55,8 @@ const Browse = () => {
         startingBid: 8000,
         endTime: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
         category: 'Collectibles',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
       },
       {
         id: '5',
@@ -61,7 +66,8 @@ const Browse = () => {
         startingBid: 2500,
         endTime: new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
         category: 'Electronics',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
       },
       {
         id: '6',
@@ -71,7 +77,8 @@ const Browse = () => {
         startingBid: 300,
         endTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
         category: 'Jewelry',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop'
       },
       {
         id: '7',
@@ -81,7 +88,8 @@ const Browse = () => {
         startingBid: 12000,
         endTime: new Date(Date.now() + 18 * 60 * 60 * 1000).toISOString(),
         category: 'Music',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop'
       },
       {
         id: '8',
@@ -91,7 +99,8 @@ const Browse = () => {
         startingBid: 2000,
         endTime: new Date(Date.now() + 36 * 60 * 60 * 1000).toISOString(),
         category: 'Books',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop'
       },
       {
         id: '9',
@@ -101,7 +110,8 @@ const Browse = () => {
         startingBid: 3500,
         endTime: new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString(),
         category: 'Automotive',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop'
       },
       {
         id: '10',
@@ -111,7 +121,8 @@ const Browse = () => {
         startingBid: 3000,
         endTime: new Date(Date.now() + 96 * 60 * 60 * 1000).toISOString(),
         category: 'Art',
-        status: 'active' as const
+        status: 'active' as const,
+        imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
       }
     ];
     
