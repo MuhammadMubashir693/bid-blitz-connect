@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -210,6 +211,23 @@ const ItemDetail = () => {
       setItem({ ...item, currentBid: bidValue });
       setBidHistory([newBid, ...bidHistory]);
       setBidAmount((bidValue + 50).toString());
+      
+      // Save bid to user's bidding history in localStorage
+      const userBidHistory = JSON.parse(localStorage.getItem('bidmaster_user_bids') || '[]');
+      const userBidRecord = {
+        id: Date.now().toString(),
+        itemId: item.id,
+        itemTitle: item.title,
+        yourBid: bidValue,
+        currentBid: bidValue,
+        status: 'winning',
+        endTime: item.endTime,
+        category: item.category,
+        timestamp: new Date().toISOString()
+      };
+      
+      userBidHistory.push(userBidRecord);
+      localStorage.setItem('bidmaster_user_bids', JSON.stringify(userBidHistory));
       
       toast({
         title: "Bid placed successfully!",

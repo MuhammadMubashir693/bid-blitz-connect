@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,38 +13,26 @@ const History = () => {
   useEffect(() => {
     if (!user) return;
 
-    // Sample bidding history
-    const sampleBiddingHistory = [
-      {
-        id: '1',
-        itemTitle: 'Vintage Rolex Submariner',
-        yourBid: 8500,
-        currentBid: 8500,
-        status: 'winning',
-        endTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
-        category: 'Watches'
-      },
-      {
-        id: '2',
-        itemTitle: 'Abstract Oil Painting',
-        yourBid: 700,
-        currentBid: 750,
-        status: 'outbid',
-        endTime: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
-        category: 'Art'
-      },
-      {
-        id: '3',
-        itemTitle: 'Rare Baseball Card Collection',
-        yourBid: 11500,
-        currentBid: 12000,
-        status: 'lost',
-        endTime: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
-        category: 'Collectibles'
+    // Load actual bidding history from localStorage
+    const userBidHistory = JSON.parse(localStorage.getItem('bidmaster_user_bids') || '[]');
+    
+    // Update bid statuses based on current time
+    const updatedBidHistory = userBidHistory.map((bid: any) => {
+      const endTime = new Date(bid.endTime).getTime();
+      const now = new Date().getTime();
+      
+      if (now > endTime) {
+        // Auction has ended, randomly determine if user won or lost
+        const won = Math.random() > 0.5;
+        return { ...bid, status: won ? 'won' : 'lost' };
       }
-    ];
+      
+      return bid;
+    });
 
-    // Sample sales history
+    setBiddingHistory(updatedBidHistory);
+
+    // Sample sales history (keeping this as sample data for now)
     const sampleSalesHistory = [
       {
         id: '4',
@@ -68,13 +55,13 @@ const History = () => {
       }
     ];
 
-    setBiddingHistory(sampleBiddingHistory);
     setSalesHistory(sampleSalesHistory);
   }, [user]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'winning': return 'bg-green-500';
+      case 'won': return 'bg-green-600';
       case 'outbid': return 'bg-yellow-500';
       case 'lost': return 'bg-red-500';
       case 'sold': return 'bg-blue-500';
@@ -86,6 +73,7 @@ const History = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'winning': return 'Winning';
+      case 'won': return 'Won';
       case 'outbid': return 'Outbid';
       case 'lost': return 'Lost';
       case 'sold': return 'Sold';
